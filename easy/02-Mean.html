@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mean</title>
+  </head>
+  <body>
+    <h1>
+      Implement a function mean(array) that returns the mean (also known as
+      average) of the values inside array, which is an array of numbers.
+    </h1>
+
+    <h2>
+      Arguments <br />
+      array (Array): Array of numbers.
+    </h2>
+
+    <h2>
+      Returns <br />
+      (Number): Returns the mean of the values in array.
+    </h2>
+
+    <code
+      >mean([4, 2, 8, 6]); // => 5 <br />
+      mean([1, 2, 3, 4]); // => 2.5 <br />
+      mean([1, 2, 2]); // => 1.6666666666666667
+    </code>
+
+    <h3>The function should return NaN if array is empty.</h3>
+    <code>mean([]); // => NaN </code>
+
+    <script>
+      function mean(arr) {
+        let len = arr.length;
+        let sum = arr.reduce((acc, cur) => {
+          return acc + cur;
+        }, 0);
+        return sum / len;
+      }
+
+      const a1 = [1, 2, 3, 4];
+      console.log(mean(a1));
+      console.log(mean([]));
+    </script>
+  </body>
+</html>

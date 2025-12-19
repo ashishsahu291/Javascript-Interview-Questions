@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Make Counter</title>
+  </head>
+  <body>
+    <h1>
+      Implement a function makeCounter that accepts an optional integer value
+      and returns a function. When the returned function is called initially, it
+      returns the initial value if provided, otherwise 0. The returned function
+      can be called repeatedly to return 1 more than the return value of the
+      previous invocation.
+    </h1>
+    <code
+      >const counter = makeCounter(); <br />
+      counter(); // 0 <br />
+      counter(); // 1 <br />
+      counter(); // 2
+    </code>
+    <p>With a custom initial value:</p>
+    <code
+      >const counter = makeCounter(5); <br />
+      counter(); // 5 <br />
+      counter(); // 6<br />
+      counter(); // 7
+    </code>
+
+    <script>
+      function makeCounter(initialVal = 0) {
+        var count = initialVal;
+        return function increment() {
+          return count++;
+        };
+      }
+
+      let counter = makeCounter();
+    </script>
+  </body>
+</html>

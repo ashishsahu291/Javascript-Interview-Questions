@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Array Prototype</title>
+  </head>
+  <body>
+    <h1>
+      Array.prototype.reduce is a way of "reducing" elements in an array by
+      calling a "reducer" callback function on each element of the array in
+      order, passing in the return value from the calculation on the preceding
+      element. The final result of running the reducer across all elements of
+      the array is a single value. Implement Array.prototype.reduce. To avoid
+      overwriting the actual Array.prototype.reduce which is being used by the
+      autograder, we shall instead implement it as Array.prototype.myReduce.
+    </h1>
+
+    <code
+      >[1, 2, 3].myReduce((prev, curr) => prev + curr, 0); // 6 <br />
+      [1, 2, 3].myReduce((prev, curr) => prev + curr, 4); // 10
+    </code>
+
+    <script>
+      Array.prototype.myReduce = function (cb, initialValue) {
+        if (typeof cb != "function") {
+          throw SyntaxError("Reducer should have a callback logic");
+        }
+
+        const array = this;
+        const hasInitialVal = !!initialValue;
+
+        if (array.length === 0 && !hasInitialVal) {
+          throw TypeError("Reduce of empty array with no initial value");
+        }
+
+        let acc;
+        let startIdx;
+
+        if (hasInitialVal) {
+          acc = initialValue;
+          startIdx = 0;
+        } else {
+          acc = array[0];
+          startIdx = 1;
+        }
+
+        for (let i = startIdx; i < array.length; i++) {
+          acc = cb(acc, array[i], i, array);
+        }
+
+        return acc;
+      };
+
+      const test = [1, 2, 3].myReduce((acc, curr) => {
+        return acc + curr;
+      }, 0);
+
+      //   const test1 = [1, 2, 3].reduce((acc, curr, i) => {
+      //     console.log("acc in index", i, "is", acc);
+      //     return acc + curr;
+      //   });
+
+      console.log(test);
+    </script>
+  </body>
+</html>
