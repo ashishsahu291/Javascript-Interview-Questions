@@ -22,39 +22,62 @@
     </code>
 
     <script>
-      Array.prototype.myReduce = function (cb, initialValue) {
-        if (typeof cb != "function") {
+      Array.prototype.myReduce = function (callbackFn, initialValue) {
+        if (typeof callbackFn != "function") {
           throw SyntaxError("Reducer should have a callback logic");
         }
 
         const array = this;
-        const hasInitialVal = !!initialValue;
+        const length = array.length === 0;
+        const hasInitialVal = arguments.length > 1;
 
-        if (array.length === 0 && !hasInitialVal) {
-          throw TypeError("Reduce of empty array with no initial value");
+        if (length && !hasInitialVal) {
+          throw TypeError("No initial value provided and array is empty.");
+        }
+
+        if (length) {
+          return initialValue;
         }
 
         let acc;
-        let startIdx;
+        let startIdx = 0;
 
         if (hasInitialVal) {
           acc = initialValue;
-          startIdx = 0;
         } else {
           acc = array[0];
           startIdx = 1;
         }
 
         for (let i = startIdx; i < array.length; i++) {
-          acc = cb(acc, array[i], i, array);
+          if (i in array) {
+            acc = callbackFn(acc, array[i], i, array);
+          }
         }
 
         return acc;
       };
 
-      const test = [1, 2, 3].myReduce((acc, curr) => {
-        return acc + curr;
-      }, 0);
+      // Tests
+
+      const add = (prev, curr) => prev + curr;
+      const multiplyByIndex = (prev, curr, index) => {
+        return prev + curr * index;
+      };
+      const subtract = (prev, curr) => prev - curr;
+      const sumOfSquares = (prev, curr, index, array) =>
+        prev + curr * array[index];
+      const combineObj = (prev, curr) => ({ ...prev, ...curr });
+      const combineArr = (prev, curr) => [...prev, curr];
+
+      // const test = [1, 2, 3].myReduce(add, 0);
+      // const test = [1, 2, 3].myReduce(multiplyByIndex, 0);
+      // const test = [1, 2, 3].myReduce(subtract, 0);
+      // const test = [1, 2, 3].myReduce(sumOfSquares, 0);
+      // const test = [{ foo: 1 }, { bar: 2 }].myReduce(combineObj);
+      // const test = [{ foo: 1 }, { bar: 2 }].myReduce(combineObj, {});
+      // const test = [1, 2, 3].myReduce(combineArr, [4, 5]);
+      const test = [1, 2, 3, , 5].myReduce(add, 0);
 
       //   const test1 = [1, 2, 3].reduce((acc, curr, i) => {
       //     console.log("acc in index", i, "is", acc);
