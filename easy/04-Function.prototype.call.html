@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>call method</title>
+  </head>
+  <body>
+    <h1>
+      Implement your own Function.prototype.call without calling the native call
+      method. To avoid overwriting the actual Function.prototype.call, implement
+      the function as Function.prototype.myCall.
+    </h1>
+    <h3>Example</h3>
+    <code>
+      function multiplyAge(multiplier = 1) { <br />
+      return this.age * multiplier; <br />
+      } <br />
+      const mary = { age: 21, }; <br />const john = { age: 42, };<br />
+      multiplyAge.myCall(mary); // 21 <br />multiplyAge.myCall(john, 2); // 84
+    </code>
+
+    <script>
+      Function.prototype.myCall = function (thisArg, ...arguments) {
+        const context = thisArg ?? globalThis;
+        const fnKey = Symbol("fn");
+        context[fnKey] = this;
+        const result = context[fnKey](...arguments);
+        delete context[fnKey];
+        return result;
+        console.log(context);
+        console.log(result);
+      };
+
+      const person = {
+        name: "Ashish",
+        getName: function (city) {
+          console.log("Hello iam " + this.name + ". Iam from " + city);
+        },
+      };
+
+      const person1 = {
+        name: "Mukesh",
+      };
+
+      person.getName.call(person1, "Sambalpur");
+      person.getName.myCall(person1);
+      person.getName.myCall(null, 1);
+    </script>
+  </body>
+</html>
