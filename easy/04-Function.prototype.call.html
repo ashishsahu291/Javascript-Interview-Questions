@@ -43,9 +43,16 @@
         name: "Mukesh",
       };
 
-      person.getName.call(person1, "Sambalpur");
-      person.getName.myCall(person1);
-      person.getName.myCall(null, 1);
+      function sum(...args) {
+        return args.reduce((acc, num) => acc + num, 0);
+      }
+
+      //   person.getName.call(person1, "Sambalpur");
+      //   person.getName.myCall(person1);
+      person.getName.myCall();
+      //   person.getName.myCall(null, 1);
+      //   const result = sum.myCall(null, 1, 2);
+      //   console.log(result);
     </script>
   </body>
 </html>
