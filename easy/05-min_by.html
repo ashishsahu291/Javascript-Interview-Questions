@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>minby</title>
+  </head>
+  <body>
+    <h1>
+      Implement a function minBy(array, iteratee) that finds the element inside
+      array with the minimum value after going through iteratee.
+    </h1>
+    <h2>Arguments</h2>
+    <ol>
+      <li>array (Array): The array to iterate over.</li>
+      <li>
+        iteratee (Function): The iteratee invoked per element, which is a
+        function that accepts one argument: (value).
+      </li>
+    </ol>
+    <h2>Returns</h2>
+    <p>(*): Returns the minimum value.</p>
+
+    <code
+      >minBy([2, 3, 1, 4], (num) => num); // => 1 <br />
+
+      minBy([{ n: 1 }, { n: 2 }], (o) => o.n); // => { n: 1 }
+    </code>
+    <p>
+      The function should ignore elements where iteratee produces null or
+      undefined.
+    </p>
+    <code>minBy([{ n: 1 }, { n: 2 }], (o) => o.m); // => undefined </code>
+
+    <script>
+      function minBy(arr, iteratee) {
+        arr = arr.filter((o) => {
+          const val = iteratee(o);
+          return val !== undefined && val !== null;
+        });
+
+        if (arr.length === 0) return undefined;
+
+        let minEle = arr[0];
+        let minValue = iteratee(arr[0]);
+
+        if (minValue == undefined) {
+          return undefined;
+        } else {
+          for (i = 1; i < arr.length; i++) {
+            let currentVal = iteratee(arr[i]);
+            if (currentVal < minValue) {
+              minEle = arr[i];
+              minValue = iteratee(arr[i]);
+            }
+          }
+          return minEle;
+        }
+      }
+
+      let res = minBy([1, 2, 3, 0], (num) => num);
+      console.log(res);
+      let res1 = minBy([{ n: 1 }, { n: 2 }], (o) => o.m);
+      console.log(res1);
+      let res2 = minBy(
+        [{ data: { score: 20 } }, { data: { score: 10 } }],
+        (o) => o.data.score
+      );
+      console.log(res2);
+      let res3 = minBy([{ n: 1 }, { n: 2, m: 3 }, { m: 4 }], (o) => o.m);
+      console.log(res3);
+    </script>
+  </body>
+</html>
