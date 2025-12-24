@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stack</title>
+  </head>
+  <body>
+    <h1>
+      Implement a stack data structure in JavaScript that contains the following
+      operations:
+    </h1>
+    <ol>
+      <li>
+        new Stack(): Creates an instance of a Stack class that doesn't contain
+        any items. The constructor does not accept any arguments.
+      </li>
+      <li>
+        push(): Pushes an item onto the top of the stack and returns the new
+        length of the stack. Required time complexity: O(1).
+      </li>
+      <li>
+        pop(): Removes an item at the top of the stack and returns that item.
+        Required time complexity: O(1).
+      </li>
+      <li>
+        isEmpty(): Determines if the stack is empty. Required time complexity:
+        O(1).
+      </li>
+      <li>
+        peek(): Returns the item at the top of the stack without removing it
+        from the stack. Required time complexity: O(1).
+      </li>
+      <li>
+        length(): Returns the number of items in the stack. Required time
+        complexity: O(1).
+      </li>
+    </ol>
+    <h2>Example</h2>
+    <code>
+      const stack = new Stack(); <br />
+      stack.isEmpty(); // true <br />
+      stack.push(1); <br />
+      stack.push(2); <br />
+      stack.length(); // 2 <br />
+      stack.push(3); <br />
+      stack.peek(); // 3 <br />
+      stack.pop(); // 3 <br />
+      stack.isEmpty(); // false
+    </code>
+
+    <script>
+      class Stack {
+        constructor() {
+          this.items = [];
+        }
+
+        /**
+         * Pushes an item onto the top of the stack.
+         * @param {*} item The item to be pushed onto the stack.
+         * @return {number} The new length of the stack.
+         */
+        push(item) {
+          this.items.push(item);
+        }
+
+        /**
+         * Remove an item at the top of the stack.
+         * @return {*} The item at the top of the stack if it is not empty, `undefined` otherwise.
+         */
+        pop() {
+          this.items.pop();
+        }
+
+        /**
+         * Determines if the stack is empty.
+         * @return {boolean} `true` if the stack has no items, `false` otherwise.
+         */
+        isEmpty() {
+          if (this.items.length !== 0) {
+            return false;
+          } else {
+            return true;
+          }
+        }
+
+        /**
+         * Returns the item at the top of the stack without removing it from the stack.
+         * @return {*} The item at the top of the stack if it is not empty, `undefined` otherwise.
+         */
+        peek() {
+          const n = this.items.length;
+          return this.items[n - 1];
+        }
+
+        /**
+         * Returns the number of items in the stack.
+         * @return {number} The number of items in the stack.
+         */
+        length() {
+          return this.items.length;
+        }
+      }
+
+      const stack = new Stack();
+      console.log(stack.isEmpty()); // true
+      console.log(stack.push(1));
+      console.log(stack.push(2));
+      console.log(stack.length()); // 2
+      console.log(stack.push(3));
+      console.log(stack.peek()); // 3
+      console.log(stack.pop()); // 3
+      console.log(stack.isEmpty()); // false
+    </script>
+  </body>
+</html>
