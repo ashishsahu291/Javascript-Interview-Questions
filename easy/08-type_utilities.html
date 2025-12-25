@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Type Utilities</title>
+  </head>
+  <body>
+    <p>
+      JavaScript is a dynamically typed language, which means the types of
+      variable can be changed during runtime. Many interview questions involve
+      recursion of values that contain values of different types and how to
+      handle each value type (e.g. different code is needed to iterate over an
+      array vs an object). Knowledge of handling the JavaScript types is crucial
+      to solving questions like Deep Clone and Deep Equal.
+    </p>
+
+    <p>
+      In this question, we will implement the following utility functions to
+      determine the types of primitive values.
+    </p>
+
+    <ul>
+      <li>
+        isBoolean(value): Return true if value is a boolean, false otherwise.
+      </li>
+      <li>
+        isNumber(value): Return true if value is a number, false otherwise. Note
+        that NaN is considered a number.
+      </li>
+      <li>isNull(value): Return true if value is null, false otherwise.</li>
+      <li>isString(value): Return true if value is a String, else false.</li>
+      <li>
+        isSymbol(value): Return true if value is a Symbol primitive, else false.
+      </li>
+      <li>
+        isUndefined(value): Return true if value is undefined, else false.
+      </li>
+    </ul>
+
+    <script>
+      function isBoolean(value) {
+        return typeof value === "boolean" ? true : false;
+      }
+
+      function isNumber(value) {
+        return typeof value === "number" ? true : false;
+      }
+
+      function isNull(value) {
+        return value === null ? true : false;
+      }
+
+      function isString(value) {
+        return typeof value === "string" ? true : false;
+      }
+
+      function isSymbol(value) {
+        return typeof value === "symbol" ? true : false;
+      }
+
+      function isUndefined(value) {
+        return typeof value === "undefined" ? true : false;
+      }
+    </script>
+  </body>
+</html>

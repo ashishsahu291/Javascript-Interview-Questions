@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>useBoolean</title>
+  </head>
+  <body>
+    <h1>
+      Implement a useBoolean hook that manages a boolean state, with additional
+      convenience utility methods.
+    </h1>
+    <code>
+      export default function Component() { const { value, setTrue, setFalse } =
+      useBoolean(); return (
+      <div>
+        <p>{value ? 'enabled' : 'disabled'}</p>
+        <button onClick="{toggle}">Toggle</button>
+      </div>
+      ); }
+    </code>
+    <h2>Arguments</h2>
+    <p>
+      initialValue: boolean: Initial value of the boolean state. If not
+      provided, it should default to false.
+    </p>
+    <h2>Returns</h2>
+    <p>The useBoolean hook returns an object with the following properties.</p>
+    <ul>
+      <li>value: boolean: The current boolean state</li>
+      <li>setTrue: () => void: A function to set the boolean state to true</li>
+      <li>
+        setFalse: () => void: A function to set the boolean state to false
+      </li>
+    </ul>
+
+    <script>
+      import { useState } from "react";
+      /**
+       * @param boolean initialValue
+       * @return Object
+       */
+      function useBoolean(initialValue) {
+        let [value, setValue] = useState(initialValue ?? false);
+
+        const setTrue = () => setValue(true);
+
+        const setFalse = () => setValue(false);
+
+        return { value, setTrue, setFalse };
+      }
+
+      //   console.log(useBoolean(true));
+      //   console.log(useBoolean(false));
+      //   console.log(useBoolean());
+    </script>
+  </body>
+</html>
