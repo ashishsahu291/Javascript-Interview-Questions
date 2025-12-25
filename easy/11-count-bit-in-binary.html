@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Count set bit in Binary</title>
+  </head>
+  <body>
+    <h1>Count Set Bits in a Binary Number</h1>
+    <p>
+      Given a positive integer num, determine the number of set bits (1s)
+      present in the binary representation of the given number, commonly
+      referred to as the Hamming weight.
+    </p>
+    <h2>Examples</h2>
+    <code>
+      Input: num = 8 <br />
+      Output: 1 <br />
+      Explanation: The given number in binary (1000) has a total of one set bit
+    </code>
+    <code>
+      Input: num = 9 <br />
+      Output: 2 <br />
+      Explanation: The given number in binary (1001) has a total of two set bit
+    </code>
+
+    <script>
+      /**
+       * @param {number} num
+       * @return {number}
+       */
+      function countOnesInBinary(num) {
+        const binaryValue = num.toString(2);
+        let bitCount = 0;
+        Array.from(binaryValue).map((val, i) => {
+          if (val === "1") {
+            bitCount++;
+          }
+        });
+        return bitCount;
+      }
+
+      console.log(countOnesInBinary(10));
+    </script>
+  </body>
+</html>

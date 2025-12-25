@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cycle</title>
+  </head>
+  <body>
+    <p>
+      Implement a function that takes one or more values and returns a function
+      that cycles through those values each time it is called.
+    </p>
+    <code>
+      const helloFn = cycle('hello'); <br />
+      console.log(helloFn()); // "hello" <br />
+      console.log(helloFn()); // "hello" <br />
+
+      const onOffFn = cycle('on', 'off'); <br />
+      console.log(onOffFn()); // "on" <br />
+      console.log(onOffFn()); // "off" <br />
+      console.log(onOffFn()); // "on"
+    </code>
+
+    <script>
+      /**
+       * @template T
+       * @param  {...T} values
+       *
+       * @returns () => T
+       */
+      function cycle(...values) {
+        // let track = 0;
+        // return function () {
+        //   if (track <= values.length - 1) {
+        //     let value = values[track];
+        //     track++;
+        //     return value;
+        //   } else {
+        //     track = 0;
+        //     let value = values[track];
+        //     track++;
+        //     return value;
+        //   }
+        // };
+
+        // Optimized version
+        let index = 0;
+
+        return function () {
+          let value = values[index];
+          index = (index + 1) % values.length;
+          return value;
+        };
+      }
+
+      const onOffFn = cycle("on", "off");
+      console.log(onOffFn()); // "on"
+      console.log(onOffFn());
+      console.log(onOffFn());
+    </script>
+  </body>
+</html>
